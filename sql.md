@@ -80,6 +80,33 @@ SELECT name, year, align, universe, gender, hair, eye, appearances
 FROM superheroes
 WHERE universe IN ('marvel','dc')
 AND align IN ('Bad Characters','Good Characters')
+AND year BETWEEN 1936 and 2004
 ORDER BY appearances ASC
 LIMIT 10
+```
+## Исроилов Озодбек
+Найди первых 15 злодеев из марвел, появившиеся между 1960 и 2000 годах и имеющие черные волосы. Отсортируй их появления по убыванию.
+```
+SELECT name, year, align, universe, gender, hair, eye, appearances
+FROM superheroes
+WHERE universe = 'marvel'
+AND align = 'Bad Characters'
+AND hair = 'Black Hair'
+AND year BETWEEN 1960 and 2000
+ORDER BY appearances DESC
+LIMIT 15
+```
+## Агарков Андрей
+Вывести имена, года, мировозрение, пол, цвет глаз и цвет волос для супергероев из вселенной Marvel в промежутке 1980 и 2000 годов. Выведи персонажей мужского пола у которых голубой цвет глаз, волосы — чёрные, а мировозрение соответствует «Злодеям». Имя отсортируй по возрастанию и покажи первые 10 записей.
+```
+SELECT name, year, align, universe, gender, hair, eye, appearances
+FROM superheroes
+WHERE universe = 'marvel'
+AND gender = 'Male Characters'
+AND eye = 'Blue Eyes'
+AND hair = 'Black Hair'
+AND align = 'Bad Characters'
+ORDER BY name ASC
+LIMIT 10
+
 ```
