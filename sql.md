@@ -73,3 +73,13 @@ AND year > 1980
 ORDER BY appearances DESC
 LIMIT 10
 ```
+## Вагин Александр
+Найди 10 самых редко появляющихся мужских персонажей в промежутке с 1936 по 2004 годов. Найди их вселенные marvel и dc, а также типы хороший, плохой. Чтобы были видны их имена, года, тип персонажа(хороший или плохой), количество появлений, пол, цвет глаз, а также чтобы указывалась вселенная(marvel, dc). И отсортируй их по возрастанию появлений.
+```
+SELECT name, year, align, universe, gender, hair, eye, appearances
+FROM superheroes
+WHERE universe IN ('marvel','dc')
+AND align IN ('Bad Characters','Good Characters')
+ORDER BY appearances ASC
+LIMIT 10
+```
