@@ -218,3 +218,16 @@ AND appearances >= 5
 ORDER BY year ASC
 LIMIT 10
 ```
+## Сафаров Руслан
+Сравнить две вселенные — Marvel и DC — По среднему кол-ву появлений персонажей. Общему кол-ву героев. Сумме появлений. Показать максимальные и минимальные кол-во появлений в этих вселенных по отдельности
+```
+SELECT universe,
+COUNT(*) AS heroes,
+AVG(appearances) AS avg_appearances,
+	SUM(appearances) AS sum_appearances,
+  	MAX(appearances) AS max_appearances,
+	MIN(appearances) AS min_appearances
+FROM superheroes
+WHERE universe IN ('marvel', 'dc')
+GROUP BY universe
+```
