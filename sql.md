@@ -110,3 +110,111 @@ ORDER BY name ASC
 LIMIT 10
 
 ```
+## Кривицкий Артём
+Найди первых 15 супергероев во вселенной marvel по их номеру, который варьируется между 200 и 300, также  по имени, полу,  глазам,  волосам, появлением, вселеной, дополнительные условия для поиска, у героев голубые глаза, вселеная marvel и светлые волосы, а также сгруппируй имя и номер и отсортируй по волосам.
+```
+SELECT id,name,gender,eye,hair,align,appearances,year,universe
+FROM superheroes
+WHERE eye = 'Blue Eyes'
+AND universe = 'marvel'
+AND hair = 'Blond Hair'
+AND id BETWEEN 200 and 300
+GROUP BY id,name
+ORDER BY hair
+LIMIT 15
+```
+## Шнайдер Данила
+Выведи 20 нейтральных женских персонажей блондинок из marvel с голубыми глазами которые появлялись за 1990 по 2010 год отсортируя их по убыванию появлений
+```
+SELECT id,name,gender,eye,hair,align,appearances,year,universe
+FROM superheroes
+WHERE gender = 'Female Characters'
+AND universe = 'marvel'
+AND hair = 'Blond Hair'
+AND eye = 'Blue Eyes'
+AND year BETWEEN 1990 and 2010
+ORDER BY appearances DESC
+LIMIT 20
+```
+## Несмашный Алексей
+Выбрать первых 25 супергероев из вселенной марвел с голубыми глазами. Для каждого мужского персонажа вывести: минимальное, максимальное и среднее кол-во появлений, пол, цвет глаз и вселенную. Сгруппировать и отсортировать по имени и id
+```
+SELECT id,name,gender,eye,hair,align, MIN (appearances), MAX (appearances), AVG (appearances),year,universe
+FROM superheroes
+WHERE universe = 'marvel'
+AND gender = 'Male Characters'
+AND eye = 'Blue Eyes'
+GROUP BY id,name
+LIMIT 25
+```
+## Цыбулин Никита
+Найди первых семь супергероев(мужских) во вселенной Marvel по году их первого появления в комиксах. Для каждого укажи имя, принадлежность (например, хороший, плохой или вообще нейтральный), цвет глаз, их пол и год с псевдонимом год дебюта(появление). Учти, что у всех этих героев должны быть чёрные глаза, а их индефицирующий номер в базе находится в промежутке от 100 до 500. Сгруппируй данные так, чтобы имя героя и его номер шли вместе. Отсортируй итоговый список по возрастанию года — от самого раннего появления к самому позднему
+```
+SELECT id,name,gender,eye,hair,align,appearances,year,universe
+FROM superheroes
+WHERE gender = 'Male Characters'
+AND universe = 'marvel'
+AND eye = 'Black Eyes'
+AND align IN ('Neutral Characters','Good Characters','Bad Characters')
+AND id BETWEEN 100 and 500
+GROUP BY id,name
+ORDER BY year ASC
+LIMIT 7
+```
+## Персидский Илья
+Запрос находит 13 супергероев с самым большим количеством появлений, показывает их долю от общего числа всех появлений всех героев составляет каждый из них.
+```
+SELECT name,appearances,
+100.0 * appearances / (SELECT SUM(appearances) FROM superheroes) AS доля
+FROM superheroes
+ORDER BY appearances DESC
+LIMIT 13
+```
+## Яковлева Виктория
+Найди первых 17 самых не популярных по появлению героинь в диапазоне от 454-1812,  без коричневого цвета волос и глаз. Из любой вселенной. Чтобы они были НЕ плохие и НЕ нейтральные
+```
+SELECT id,name,gender,eye,hair,align,appearances,year,universe
+FROM superheroes
+WHERE gender = 'Female Characters'
+AND NOT hair ='Brown Hair'
+AND NOT eye = 'Brown Eyes'
+AND NOT align IN ('Good Characters','Neutral Characters')
+AND id BETWEEN 454 and 1812
+LIMIT 17
+```
+## Куковский Кирилл
+Найди мне 15 злодеев мужского пола из вселенной ДС, которые появлялись чаще всего, но не менее 14 раз (14 включительно), созданные в период с 1965 по 2000 год, имеющие зеленый и синий цвет глаз и различные виды светлых волос.
+```
+SELECT id,name,gender,eye,hair,align,appearances,year,universe
+FROM superheroes
+WHERE align = 'Bad Characters'
+AND gender = 'Male Characters'
+AND universe = 'dc'
+AND appearances >= 14
+AND eye IN ('Green Eyes','Blue Eyes')
+AND hair IN ('Silver Hair','Blond Hair','White Hair')
+AND year BETWEEN 1965 and 2000
+LIMIT 15
+```
+## Губарьков Ярослав
+Необходимо составить запрос, который будет выводить сколько хороших персонажей появилось в каждом из годов с 1990 по 2013 год и отсортировать по убыванию (сначала год в котором появилось больше всего персонажей), ограничив первыми 20
+```
+SELECT id,name,gender,eye,hair,align,appearances,year,universe
+FROM superheroes
+WHERE align = 'Good Characters'
+AND year BETWEEN 1990 and 2013
+ORDER BY year DESC
+LIMIT 20
+```
+## Нягу Елизавета
+Выбрать первых 10 супергероев из вселенной Marvel, у которых цвет глаз чёрный, id находится в диапазоне от 100 до 300, и которые появлялись в комиксах не менее 5 раз. Для каждого героя вывести: id,имя,принадлежность,цвет глаз,цвет волос,количество появлений,год первого появления,вселенную.Отсортировать результат по году первого появления от самого старого к новому
+```
+SELECT id,name,gender,eye,hair,align,appearances,year,universe
+FROM superheroes
+WHERE universe = 'marvel'
+AND eye = 'Black Eyes'
+AND id BETWEEN 100 and 300
+AND appearances >= 5
+ORDER BY year ASC
+LIMIT 10
+```
